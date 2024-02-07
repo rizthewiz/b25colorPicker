@@ -1,14 +1,13 @@
 import { useState } from "react";
 
 // Write your Color component here
-const Color = ({ color, setSelectedColor }) => {
-  const [current, setCurrent] = useState("");
+const Color = ({ color, setSelectedColor, colorHolder, setColorHolder }) => {
   return (
     <div
-      className={`${color} ${current}`}
+      className={`${color} ${colorHolder === color ? "selected" : ""}`}
       onClick={() => {
         setSelectedColor(color);
-        color ? setCurrent("selected") : setCurrent("");
+        setColorHolder(color);
       }}
     ></div>
   );
@@ -16,6 +15,7 @@ const Color = ({ color, setSelectedColor }) => {
 
 const App = () => {
   const [selectedColor, setSelectedColor] = useState("");
+  const [colorHolder, setColorHolder] = useState("");
 
   return (
     <div id="container">
@@ -24,9 +24,24 @@ const App = () => {
         <div className={selectedColor}>{selectedColor}</div>
       </div>
       <div id="colors-list">
-        <Color color="blue" setSelectedColor={setSelectedColor} />
-        <Color color="black" setSelectedColor={setSelectedColor} />
-        <Color color="red" setSelectedColor={setSelectedColor} />
+        <Color
+          color="blue"
+          setSelectedColor={setSelectedColor}
+          colorHolder={colorHolder}
+          setColorHolder={setColorHolder}
+        />
+        <Color
+          color="black"
+          setSelectedColor={setSelectedColor}
+          colorHolder={colorHolder}
+          setColorHolder={setColorHolder}
+        />
+        <Color
+          color="red"
+          setSelectedColor={setSelectedColor}
+          colorHolder={colorHolder}
+          setColorHolder={setColorHolder}
+        />
       </div>
     </div>
   );
